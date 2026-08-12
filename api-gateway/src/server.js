@@ -1,17 +1,17 @@
 const express = require("express");
 
+const routes = require("./routes");
+const errorHandler = require("./middleware/errorHandler");
+
 const app = express();
 
 app.use(express.json());
 
-const PORT = 3000;
+app.use("/api", routes);
 
-app.get("/health", (req, res) => {
-  res.json({
-    service: "api-gateway",
-    status: "healthy"
-  });
-});
+app.use(errorHandler);
+
+const PORT = 3000;
 
 app.listen(PORT, () => {
   console.log(`API Gateway running on port ${PORT}`);
