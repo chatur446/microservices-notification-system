@@ -1,17 +1,14 @@
 const express = require("express");
 
+const notificationRoutes = require("./routes/notificationRoutes");
+
 const app = express();
 
 app.use(express.json());
 
-const PORT = 3002;
+app.use("/api/notifications", notificationRoutes);
 
-app.get("/health", (req, res) => {
-  res.json({
-    service: "notification-service",
-    status: "healthy"
-  });
-});
+const PORT = 3002;
 
 app.listen(PORT, () => {
   console.log(`Notification Service running on port ${PORT}`);
