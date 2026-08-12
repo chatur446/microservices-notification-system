@@ -1,17 +1,14 @@
 const express = require("express");
 
+const userRoutes = require("./routes/userRoutes");
+
 const app = express();
 
 app.use(express.json());
 
-const PORT = 3001;
+app.use("/api/users", userRoutes);
 
-app.get("/health", (req, res) => {
-  res.json({
-    service: "user-service",
-    status: "healthy"
-  });
-});
+const PORT = 3001;
 
 app.listen(PORT, () => {
   console.log(`User Service running on port ${PORT}`);
